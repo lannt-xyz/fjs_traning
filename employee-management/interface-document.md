@@ -82,9 +82,9 @@
 
 ##### Parameter error
 
-|HTTP Status|Error code|Error message|Description |
+|HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_id|Employee ID is invalid|The requested Employee ID is contains Non-Nummeric characters. |
+|400|invalid_id|Employee ID is invalid|The requested Employee ID is contains Non-Nummeric characters.|
 
 ##### Sample Error Response
 
