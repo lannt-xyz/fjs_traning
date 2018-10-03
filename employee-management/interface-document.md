@@ -32,9 +32,9 @@
 
 #### Path parameters
 
-|Required|Parameter name|Value (example)|Type|Description
+|Required|Parameter name|Value (example)|Type|Description|
 |:----|:----|:----|:----|:----|
-|○|id|123|string|Employee id|
+|›|id|123|string|Employee id|
 
 #### Sample request URL
 
@@ -54,17 +54,17 @@
 
 #### Body
 
-- Trả về thông tin nhân viên được chỉ định
+- Tr? v? thong tin nhan vien ???c ch? ??nh
 
 ##### Employee information
 
 |Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
 |id|123|string|Employee id|
-|first_name|bien|string|Name employee|
-|last_name|danghuu|string|Last name employee|
-|date_of_birth|1996-02-15|string|Birthdate employee|
-|salary|50000|number|Employee salary|
+|first_name|bien|string|Employee's first name|
+|last_name|danghuu|string|Employee's last name|
+|date_of_birth|1996-02-15|string|Birthdate's Employee|
+|salary|50000|number|Employee's salary|
 
 ##### Sample response
 
@@ -82,9 +82,10 @@
 
 ##### Parameter error
 
-|HTTP Status|Error code|Error message|Description |
+|HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_id|Employee ID is invalid|The requested Employee ID is contains Non-Nummeric characters. |
+|400|invalid_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
+|400|out_of_range_input_id|Employee id is out of range.|the request inputs Employee is out of range.|
 
 ##### Sample Error Response
 
@@ -97,7 +98,27 @@
 }
 ```
 
+- When returning multiple errors at the same time
+
+```json
+{
+  "errors": [
+    {
+      "code": "invalid_id",
+      "message": "Employee ID is invalid."
+    },
+    {
+      "code": "out_of_range_input_id",
+      "message": "Employee id is out of range."
+    }
+  ]
+}
+```
+
 ## Search Employee API
+
+- Tr? v? thong tin nhan vien t??ng ?ng v?i ?i?u ki?n ?ang ???c mo t? t?i [Query parameters](#query-parameters)
+- Danh sach thong tin nhan vien ???c tr? v? s?p x?p theo employee_id t?ng d?n
 
 ### Request
 
@@ -113,15 +134,15 @@
 
 #### Query parameters
 
-|Required|Parameter name|Value (example)|Type|Description
+|Required|Parameter name|Value (example)|Type|Description|
 |:----|:----|:----|:----|:----|
-||first_name|bien|string|Name employee|
-||last_name|danghuu|string|Last name employee|
-||date_of_birth_start|1996-02-15|string|Start Birthdate of employee|
-||date_of_birth_end|1998-12-30|string|End Birthdate of employee|
-||salary_min|1000|number|Min salary of employee|
-||salary_max|50000|number|Max salary of employee|
-||page|3|number|Display employee information page|
+||first_name|bien|string|Employee's first name|
+||last_name|danghuu|string|Employee's last name|
+||date_of_birth_start|1996-02-15|string|Start Birthdate of Employee|
+||date_of_birth_end|1998-12-30|string|End Birthdate of Employee|
+||salary_min|1000|number|Min salary of Employee|
+||salary_max|50000|number|Max salary of Employee|
+||page|3|number|Display Employee information page|
 ||page_count|10|number|The number of items per page. Default: 10|
 
 #### Sample request URL
@@ -140,34 +161,33 @@
     - 200 OK
     - 204 No Content(no data)
 
-#### Body
-
-- Trả về thông tin nhân viên tương ứng với điều kiện đang được mô tả tại [Query parameters](#query-parameters)
-- Danh sách thông tin nhân viên được trả về sắp xếp theo employee_id
-
 ##### Sample response
 
 ```json
-[
-  {
-    "id": "123",
-    "first_name": "bien",    
-    "last_name": "danghuu",
-    "date_of_birth": "1996-02-15",
-    "salary": 50000,
+{
+  "employees": [
+    {
+      "id": "123",
+      "first_name": "bien",    
+      "last_name": "danghuu",
+      "date_of_birth": "1996-02-15",
+      "salary": 50000
+    },
+    {
+      "id": "124",
+      "first_name": "luan",   
+      "last_name": "danghuu",
+      "date_of_birth": "1998-12-29",
+      "salary": 10000
+    }
+  ],
+  "pagination": {
     "page": 3,
-    "page_count": 10
-  },
-  {
-    "id": "124",
-    "first_name": "luan",   
-    "last_name": "danghuu",
-    "date_of_birth": "1998-12-29",
-    "salary": 10000,
-    "page": 3,
-    "page_count": 10
+    "count": 10,
+    "total_count": 50,
+    "total_page": 5
   }
-]
+}
 
 ```
 
@@ -177,11 +197,11 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_date_of_birth_start|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters. |
-|400|invalid_date_of_birth_end|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters. |
-|400|invalid_salary_min|Employee salary min is invalid.|The requested Employee salary min is contains non-string characters. |
-|400|invalid_salary_max|Employee salary max is invalid.|The requested Employee salary max is contains non-string characters. |
-|404|not_found|Not found employee.|Not found employee information. |
+|400|invalid_date_of_birth_start|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters.|
+|400|invalid_date_of_birth_end|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters.|
+|400|invalid_salary_min|Employee salary min is invalid.|The requested Employee salary min is contains non-string characters.|
+|400|invalid_salary_max|Employee salary max is invalid.|The requested Employee salary max is contains non-string characters.|
+|404|not_found_id|Employee id is not exist.|The specified Employee ID does not exist.|
 
 ##### Sample Error Response
 
@@ -231,15 +251,27 @@
 /employee
 ```
 
-#### Sample Body
+#### Request Body
 
 |Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
-|id|123|string|employee id|
-|first_name|bien|string|Name employee|
-|last_name|danghuu|string|Last name employee|
-|date_of_birth|1996-02-15|string|Birth date of employee|
-|salary|50000|number|Employee salary|
+|id|123|string|Employee ID|
+|first_name|bien|string|Employee's first name|
+|last_name|danghuu|string|Employee's last name|
+|date_of_birth|1996-02-15|string|Birthdate's Employee|
+|salary|50000|number|Employee's salary|
+
+##### Body
+
+```json
+{
+  "id": "123",
+  "first_name": "bien",
+  "last_name": "danghuu",
+  "date_of_birth": "1996-02-15",
+  "salary": 50000
+}
+```
 
 ### Response
 
@@ -258,8 +290,8 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_date_of_birth|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters. |
-|400|invalid_salary|Employee salary is not valid|The requested Employee salary is contains non-string characters. |
+|400|invalid_date_of_birth|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters.|
+|400|invalid_salary|Employee salary is invalid|The requested Employee salary is contains non-string characters.|
 
 ##### Sample Error Response
 
@@ -269,6 +301,23 @@
 {
   "code": "invalid_date_of_birth",
   "message": "Date Of Birth is invalid."
+}
+```
+
+- When returning multiple errors at the same time
+
+```json
+{
+  "errors": [
+    {
+      "code": "invalid_date_of_birth",
+      "message": "Date Of Birth is invalid."
+    },
+    {
+      "code": "invalid_salary",
+      "message": "Employee salary is invalid."
+    }
+  ]
 }
 ```
 
@@ -297,10 +346,10 @@
 |Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
 |id|123|string|employee id|
-|first_name|bien|string|Name employee|
-|last_name|danghuu|string|Last name employee|
-|date_of_birth|1996-02-15|string|Birth date of employee|
-|salary|50000|number|Employee salary|
+|first_name|bien|string|Employee's first name|
+|last_name|danghuu|string|Employee's last name|
+|date_of_birth|1996-02-15|string|Birthdate's employee|
+|salary|50000|number|Employee's salary|
 
 ### Response
 
@@ -311,11 +360,7 @@
 - HTTP status
     - 200 OK
     - 404 Not Found
-
-#### Body
-
-- Cập nhập thông tin nhân viên từ id được chỉ định
-
+    
 ##### Sample response
 
 ```json
@@ -332,13 +377,13 @@
 
 ##### Parameter error
 
-|HTTP Status|Error code|Error message|Description |
+|HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters. |
-|400|invalid_date_of_birth|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters. |
-|400|invalid_salary|Request employee salary is invalid.|The requested Employee salary is contains non-string characters. |
-|400|required_id|Must not be empty.|Return if employee id is not specified. |
-|404|not_found|Not found employee.|Not found employee information. |
+|400|invalid_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
+|400|invalid_date_of_birth|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters.|
+|400|invalid_salary|Employee salary is invalid.|The requested Employee salary is contains non-string characters.|
+|400|required_id|Must not be empty.|Return if Employee id is not specified.|
+|404|not_found_id|Employee id is not exist.|The specified Employee ID does not exist.|
 
 ##### Sample Error Response
 
@@ -347,7 +392,7 @@
 ```json
 {
   "code": "invalid_id",
-  "message": "Request employee id is invalid."
+  "message": "Employee ID is invalid."
 }
 ```
 
@@ -362,7 +407,7 @@
     },
     {
       "code": "invalid_salary",
-      "message": "Request employee salary is invalid."
+      "message": "Employee salary is invalid."
     }
   ]
 }
@@ -398,18 +443,15 @@
     - 200 OK
     - 404 Not Found
 
-#### Body
-
-- Xóa thông tin nhân viên được chỉ định
-
 #### Error response
 
 ##### Parameter error
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters. |
-|404|not_found|Not found employee.|Not found employee information. |
+|400|invalid_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
+|404|not_found_id|Employee id is not exist.|The specified Employee ID does not exist.|
+|401|authentication_id|Employee id is not authenticated|Employee id is unauthorized Authentication failured.|
 
 ##### Sample Error Response
 
@@ -419,5 +461,22 @@
 {
   "code": "invalid_id",
   "message": "Request Employee id is invalid."
+}
+```
+
+- When returning multiple errors at the same time
+
+```json
+{
+  "errors": [
+    {
+      "code": "not_found_id",
+      "message": "Employee id is not exist."
+    },
+    {
+      "code": "not_found_id",
+      "message": "Employee id is not exist."
+    }
+  ]
 }
 ```
