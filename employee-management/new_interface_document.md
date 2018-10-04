@@ -1,4 +1,4 @@
-# Employee Manage Api Interface specification
+# Employee Manage API Interface specification
 
 ## Table of contents
 
@@ -54,16 +54,16 @@
 
 #### Body
 
-- Trả về thông tin nhân viên được chỉ định
+- Returns the employee information to specified
 
 ##### Employee information
 
 |Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
-|id|123|string|Employee id|
+|id|123|string|Employee ID|
 |first_name|bien|string|Employee's first name|
 |last_name|danghuu|string|Employee's last name|
-|date_of_birth|1996-02-15|string|Birthdate's Employee|
+|date_of_birth|1996-02-15|string|Employee's Birthdate|
 |salary|50000|number|Employee's salary|
 
 ##### Sample response
@@ -84,8 +84,8 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
-|400|invalid_employee_id_lenght|Employee ID .|The requested Employee ID's exceed the length .|
+|400|invalid_employee_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
+|400|invalid_employee_id_lenght|Employee ID is not length exceed characters.|The requested Employee ID is not length exceed characters.|
 
 ##### Sample Error Response
 
@@ -93,7 +93,7 @@
 
 ```json
 {
-  "code": "invalid_id ",
+  "code": "invalid_employee_id ",
   "message": "Employee ID is invalid."
 }
 ```
@@ -108,8 +108,8 @@
       "message": "Employee ID is invalid."
     },
     {
-      "code": "out_of_range_input_id",
-      "message": "Employee id is out of range."
+      "code": "invalid_employee_id_lenght",
+      "message": "Employee ID is not length exceed characters."
     }
   ]
 }
@@ -117,8 +117,8 @@
 
 ## Search Employee API
 
-- Trả về thông tin nhân viên tương ứng với điều kiện đang được mô tả tại[Query paramenters]{query-parameters}
-- Danh sách thông tin nhân viên được trả về sắp xếp theo employee_id
+- Returns the employee information corresponding to the condition being described in the [Query paramenters](#query-parameters)
+- Employee information list is returned ascending by employee_id
 
 ### Request
 
@@ -197,11 +197,11 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_date_of_birth_start|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters.|
-|400|invalid_date_of_birth_end|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters.|
-|400|invalid_salary_min|Employee salary min is invalid.|The requested Employee salary min is contains non-string characters.|
-|400|invalid_salary_max|Employee salary max is invalid.|The requested Employee salary max is contains non-string characters.|
-|404|not_found_id|Employee id is not exist.|The specified Employee ID does not exist.|
+|400|invalid_date_of_birth_start|Date of birth is invalid.|The requested Employee's Birthday contains non-string characters.|
+|400|invalid_date_of_birth_end|Date of birth is invalid.|The requested Employee's Birthday contains non-string characters.|
+|400|invalid_salary_min|Employee salary is invalid.|The requested Employee's salary contains non-string characters.|
+|400|invalid_salary_max|Employee salary max is invalid.|The requested Employee's salary contains non-string characters.|
+|404|not_found_employee_id|Employee id isn't exist.|The specified Employee ID does not exist.|
 
 ##### Sample Error Response
 
@@ -210,7 +210,7 @@
 ```json
 {
   "code": "invalid_date_of_birth_start",
-  "message": "Date Of Birth is invalid."
+  "message": "Date of birth is invalid."
 }
 ```
 
@@ -225,7 +225,7 @@
     },
     {
       "code": "invalid_date_of_birth_end",
-      "message": "Date Of Birth is invalid."
+      "message": "Date of birth is invalid."
     }
   ]
 }
@@ -256,9 +256,9 @@
 |Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
 |id|123|string|Employee ID|
-|first_name|bien|string|Employee's first name|
-|last_name|danghuu|string|Employee's last name|
-|date_of_birth|1996-02-15|string|Birthdate's Employee|
+|first_name|bien|string|First name|
+|last_name|danghuu|string|Last name|
+|date_of_birth|1996-02-15|string|Birthdate|
 |salary|50000|number|Employee's salary|
 
 ##### Body
@@ -282,20 +282,18 @@
 - HTTP status
     - 201 OK
 
-#### Body
-
 #### Error response
 
 ##### Parameter error
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_date_of_birth|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters.|
-|400|invalid_salary|Employee salary is invalid|The requested Employee salary is contains non-string characters.|
+|400|invalid_date_of_birth|Date of birth is invalid.|The requested Employee's Birthday contains non-string characters.|
+|400|invalid_salary|Employee salary is invalid|The requested Employee's salary contains non-string characters.|
 
 ##### Sample Error Response
 
-- When a single error is used
+- When returning a single error
 
 ```json
 {
@@ -341,15 +339,27 @@
     /employee/123
     ```
 
-#### Sample Body
+#### Request Body
 
 |Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
 |id|123|string|employee id|
-|first_name|bien|string|Employee's first name|
-|last_name|danghuu|string|Employee's last name|
-|date_of_birth|1996-02-15|string|Birthdate's employee|
+|first_name|bien|string|First name|
+|last_name|danghuu|string|Last name|
+|date_of_birth|1996-02-15|string|Birthdate|
 |salary|50000|number|Employee's salary|
+
+##### Body
+
+```json
+{
+  "id": "123",
+  "first_name": "bien",
+  "last_name": "danghuu",
+  "date_of_birth": "1996-02-15",
+  "salary": 50000
+}
+```
 
 ### Response
 
@@ -379,19 +389,19 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
-|400|invalid_date_of_birth|Date Of Birth is invalid.|The requested Employee's Birthday contains non-string characters.|
-|400|invalid_salary|Employee salary is invalid.|The requested Employee salary is contains non-string characters.|
+|400|invalid_employee_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
+|400|invalid_date_of_birth|Date of birth is invalid.|The requested Employee's Birthday contains non-string characters.|
+|400|invalid_salary|Employee salary is invalid.|The requested Employee's salary contains non-string characters.|
 |400|required_id|Must not be empty.|Return if Employee id is not specified.|
 |404|not_found_id|Employee id is not exist.|The specified Employee ID does not exist.|
 
 ##### Sample Error Response
 
-- When a single error is used
+- When returning a single error
 
 ```json
 {
-  "code": "invalid_id",
+  "code": "invalid_employee_id",
   "message": "Employee ID is invalid."
 }
 ```
@@ -403,7 +413,7 @@
   "errors": [
     {
       "code": "invalid_date_of_birth",
-      "message": "Date Of Birth is invalid."
+      "message": "Date of birth is invalid."
     },
     {
       "code": "invalid_salary",
@@ -449,17 +459,17 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
-|404|not_found_id|Employee id is not exist.|The specified Employee ID does not exist.|
-|401|authentication_id|Employee id is not authenticated|Employee id is unauthorized Authentication failured.|
+|400|invalid_employee_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
+|404|not_found_id|Employee ID is not exist.|The specified Employee ID does not exist.|
+|401|authentication_id|Employee id is not authenticated|Employee ID is unauthorized authentication failed.|
 
 ##### Sample Error Response
 
-- When a single error is used
+- When returning a single error
 
 ```json
 {
-  "code": "invalid_id",
+  "code": "invalid_employee_id",
   "message": "Request Employee id is invalid."
 }
 ```
@@ -474,8 +484,8 @@
       "message": "Employee id is not exist."
     },
     {
-      "code": "not_found_id",
-      "message": "Employee id is not exist."
+      "code": "authentication_id",
+      "message": "Employee id is not authenticated."
     }
   ]
 }
