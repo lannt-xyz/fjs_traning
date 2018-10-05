@@ -265,7 +265,7 @@
 #### Request Body
 
 |Required|Key|Value (example)|Type|Description|
-|:----|:----|:----|:----|
+|:----|:----|:----|:----|:----|
 |○|id|123|string|employee id|
 |○|first_name|bien|string|First name|
 |○|last_name|danghuu|string|Last name|
@@ -352,7 +352,7 @@
 #### Request Body
 
 |Required|Key|Value (example)|Type|Description|
-|:----|:----|:----|:----|
+|:----|:----|:----|:----|:----|
 |○|id|123|string|employee id|
 |○|first_name|bien|string|First name|
 |○|last_name|danghuu|string|Last name|
