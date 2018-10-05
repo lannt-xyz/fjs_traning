@@ -60,8 +60,8 @@
 
 |Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
-|first_name|bien|string|First name|
-|last_name|danghuu|string|Last name|
+|first_name|bien|string|Employee's first name|
+|last_name|danghuu|string|Employee's last name|
 |date_of_birth|1996-02-15|string|Employee's Birthdate|
 |salary|50000|number|Employee's salary|
 
@@ -135,8 +135,8 @@
 
 |Required|Parameter name|Value (example)|Type|Description|
 |:----|:----|:----|:----|:----|
-||first_name|bien|string|First name|
-||last_name|danghuu|string|Last name|
+||first_name|bien|string|Employee's first name|
+||last_name|danghuu|string|Employee's last name|
 ||date_of_birth_from|1996-02-15|string|Birthdate of Employee|
 ||date_of_birth_to|1998-12-30|string|Birthdate of Employee|
 ||salary_min|1000|number|Min salary of Employee|
@@ -264,7 +264,7 @@
 
 #### Request Body
 
-|Required||Key|Value (example)|Type|Description|
+|Required|Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
 |○|id|123|string|employee id|
 |○|first_name|bien|string|First name|
@@ -351,7 +351,7 @@
 
 #### Request Body
 
-|Required||Key|Value (example)|Type|Description|
+|Required|Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
 |○|id|123|string|employee id|
 |○|first_name|bien|string|First name|
