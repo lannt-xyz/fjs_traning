@@ -84,7 +84,7 @@
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
 |400|invalid_employee_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
-|400|invalid_employee_id_lenght|Character too long.|Length of employee ID is too long.|
+|400|invalid_employee_id_lenght|Character too long.|Request Employee ID too long.|
 
 ##### Sample Error Response
 
@@ -196,11 +196,11 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_date_of_birth_from|Date of birth is invalid.|Can not use date_of_birth as type string.|
-|400|invalid_date_of_birth_to|Date of birth is invalid.|Can not use date_of_birth as type string.|
-|400|invalid_salary_min|Employee salary is invalid.|Undefined for input argument of type 'char'|
-|400|invalid_salary_max|Employee salary max is invalid.|Undefined for input argument of type 'char'|
-|404|not_found_employee_id|ID not found.|The specified Employee ID not found.|
+|400|invalid_date_of_birth_from|Date of birth is invalid.|The user enters a birthday that is not a valid date format.|
+|400|invalid_date_of_birth_to|Date of birth is invalid.|The user enters a birthday that is not a valid date format.|
+|400|invalid_salary_min|Employee salary is invalid.|Input argument of type 'char'|
+|400|invalid_salary_max|Employee salary is invalid.|Input argument of type 'char'|
+|404|not_found_employee_id|ID not found.|The user enters a non existent Employee ID.|
 
 ##### Sample Error Response
 
@@ -287,8 +287,8 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_date_of_birth|Date of birth is invalid.|Can not use date_of_birth as type string.|
-|400|invalid_salary|Employee salary is invalid|Undefined for input argument of type 'char'.|
+|400|invalid_date_of_birth|Date of birth is invalid.|The user enters a birthday that is not a valid date format.|
+|400|invalid_salary|Employee salary is invalid|Input argument of type 'char'.|
 
 ##### Sample Error Response
 
@@ -375,11 +375,11 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|required_id|Must not be empty.|Return if Employee id is not specified.|
+|400|required_id|Must not be empty.|Employee id is not specified.|
 |400|invalid_employee_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
-|400|invalid_date_of_birth|Date of birth is invalid.|Can not use date_of_birth as type string.|
-|400|invalid_salary|Employee salary is invalid.|Undefined for input argument of type 'char'.|
-|404|not_found_employee_id|ID not found.|The specified Employee ID not found.|
+|400|invalid_date_of_birth|Date of birth is invalid.|The user enters a birthday that is not a valid date format.|
+|400|invalid_salary|Employee salary is invalid.|Input argument of type 'char'.|
+|404|not_found_employee_id|ID not found.|The user enters a non existent Employee ID.|
 
 ##### Sample Error Response
 
@@ -452,7 +452,7 @@
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
 |400|invalid_employee_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
-|404|not_found_employee_id|ID not found.|The specified Employee ID not found.|
+|404|not_found_employee_id|ID not found.|The user enters a non existent Employee ID.|
 
 ##### Sample Error Response
 
