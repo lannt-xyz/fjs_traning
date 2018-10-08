@@ -34,7 +34,7 @@
 
 |Required|Parameter name|Value (example)|Type|Description|
 |:----|:----|:----|:----|:----|
-|○|id|123|string|Employee id|
+|○|id|123|string|Employee ID|
 
 #### Sample request URL
 
@@ -60,8 +60,8 @@
 
 |Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|
-|first_name|bien|string|Employee's first name|
-|last_name|danghuu|string|Employee's last name|
+|first_name|bien|string|First name|
+|last_name|danghuu|string|Last name|
 |date_of_birth|1996-02-15|string|Employee's Birthdate|
 |salary|50000|number|Employee's salary|
 
@@ -84,7 +84,7 @@
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
 |400|invalid_employee_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
-|400|invalid_employee_id_lenght|Character too long.|Request Employee ID too long.|
+|404|not_found_employee_id|ID not found.|The requested Employee ID isn't existent.|
 
 ##### Sample Error Response
 
@@ -97,27 +97,10 @@
 }
 ```
 
-- When returning multiple errors at the same time
-
-```json
-{
-  "errors": [
-    {
-      "code": "invalid_employee_id",
-      "message": "Employee ID is invalid."
-    },
-    {
-      "code": "invalid_employee_id_lenght",
-      "message": "Character too long."
-    }
-  ]
-}
-```
-
 ## Search Employee API
 
-- Returns the employee information,which corresponding to the condition was described in the [Query paramenters](#query-parameters)
-- Returns the list of employee information which ascending by employee_id
+- Returns the employee information, which corresponding to the condition was described in the [Query paramenters](#query-parameters)
+- Sort the list of employee information result by ascending Employee ID 
 
 ### Request
 
@@ -135,13 +118,13 @@
 
 |Required|Parameter name|Value (example)|Type|Description|
 |:----|:----|:----|:----|:----|
-||first_name|bien|string|Employee's first name|
-||last_name|danghuu|string|Employee's last name|
-||date_of_birth_from|1996-02-15|string|Birthdate of Employee|
-||date_of_birth_to|1998-12-30|string|Birthdate of Employee|
+||first_name|bien|string|First name|
+||last_name|danghuu|string|Last name|
+||date_of_birth_from|1996-02-15|string|Employee's Birthdate|
+||date_of_birth_to|1998-12-30|string|Employee's Birthdate|
 ||salary_min|1000|number|Min salary of Employee|
 ||salary_max|50000|number|Max salary of Employee|
-||page|3|number|Display Employee information page|
+||page|3|number|The number of current page is 3|
 ||page_count|10|number|The number of items per page. Default: 10|
 
 #### Sample request URL
@@ -196,11 +179,11 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_date_of_birth_from|Date of birth is invalid.|The user enters a birthday that is not a valid date format.|
-|400|invalid_date_of_birth_to|Date of birth is invalid.|The user enters a birthday that is not a valid date format.|
-|400|invalid_salary_min|Employee salary is invalid.|Input argument of type 'char'|
-|400|invalid_salary_max|Employee salary is invalid.|Input argument of type 'char'|
-|404|not_found_employee_id|ID not found.|The user enters a non existent Employee ID.|
+|400|invalid_date_of_birth_from|Date format is invalid.|Enters a birthday that is not a valid date format.|
+|400|invalid_date_of_birth_to|Date format is invalid.|Enters a birthday that is not a valid date format.|
+|400|invalid_salary_min|Employee salary is invalid.|Enters a salary  of type 'char'|
+|400|invalid_salary_max|Employee salary is invalid.|Enters a salary  of type 'char'|
+|404|not_found_employee_id|ID not found.|The requested Employee ID isn't existent.|
 
 ##### Sample Error Response
 
@@ -209,7 +192,7 @@
 ```json
 {
   "code": "invalid_date_of_birth_from",
-  "message": "Date of birth is invalid."
+  "message": "Date format is invalid."
 }
 ```
 
@@ -224,7 +207,7 @@
     },
     {
       "code": "invalid_date_of_birth_to",
-      "message": "Date of birth is invalid."
+      "message": "Date format is invalid."
     }
   ]
 }
@@ -266,10 +249,10 @@
 
 |Required|Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|:----|
-|○|id|123|string|employee id|
+|○|id|123|string|Employee ID|
 |○|first_name|bien|string|First name|
 |○|last_name|danghuu|string|Last name|
-|○|date_of_birth|1996-02-15|string|Birthdate|
+|○|date_of_birth|1996-02-15|string|Employee's Birthdate|
 ||salary|50000|number|Employee's salary|
 
 ### Response
@@ -287,8 +270,8 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|invalid_date_of_birth|Date of birth is invalid.|The user enters a birthday that is not a valid date format.|
-|400|invalid_salary|Employee salary is invalid|Input argument of type 'char'.|
+|400|invalid_date_of_birth|Date format is invalid.|Enters a birthday that is not a valid date format.|
+|400|invalid_salary|Employee salary is invalid|Enters a salary  of type 'char'|
 
 ##### Sample Error Response
 
@@ -297,7 +280,7 @@
 ```json
 {
   "code": "invalid_date_of_birth",
-  "message": "Date of birth is invalid."
+  "message": "Date format is invalid."
 }
 ```
 
@@ -308,7 +291,7 @@
   "errors": [
     {
       "code": "invalid_date_of_birth",
-      "message": "Date of birth is invalid."
+      "message": "Date format is invalid."
     },
     {
       "code": "invalid_salary",
@@ -353,10 +336,10 @@
 
 |Required|Key|Value (example)|Type|Description|
 |:----|:----|:----|:----|:----|
-|○|id|123|string|employee id|
+|○|id|123|string|Employee ID|
 |○|first_name|bien|string|First name|
 |○|last_name|danghuu|string|Last name|
-|○|date_of_birth|1996-02-15|string|Birthdate|
+|○|date_of_birth|1996-02-15|string|Employee's Birthdate|
 |○|salary|50000|number|Employee's salary|
 
 ### Response
@@ -375,11 +358,11 @@
 
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
-|400|required_id|Must not be empty.|Employee id is not specified.|
+|400|required_employee_id|Must not be empty.|The requested Employee ID is not specified.|
 |400|invalid_employee_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
-|400|invalid_date_of_birth|Date of birth is invalid.|The user enters a birthday that is not a valid date format.|
-|400|invalid_salary|Employee salary is invalid.|Input argument of type 'char'.|
-|404|not_found_employee_id|ID not found.|The user enters a non existent Employee ID.|
+|400|invalid_date_of_birth|Date format is invalid.|Enters a birthday that is not a valid date format.|
+|400|invalid_salary|Employee salary is invalid.|Enters a salary  of type 'char'|
+|404|not_found_employee_id|ID not found.|The requested Employee ID isn't existent.|
 
 ##### Sample Error Response
 
@@ -399,7 +382,7 @@
   "errors": [
     {
       "code": "invalid_date_of_birth",
-      "message": "Date of birth is invalid."
+      "message": "Date format is invalid."
     },
     {
       "code": "invalid_salary",
@@ -427,7 +410,7 @@
 
 |Required|Parameter name|Value (example)|Type|Description|
 |:----|:----|:----|:----|:----|
-|○|id|123|string|Employee id|
+|○|id|123|string|Employee ID|
 
 #### Sample request URL
 
@@ -452,7 +435,7 @@
 |HTTP Status|Error code|Error message|Description|
 |:----|:----|:----|:----|
 |400|invalid_employee_id|Employee ID is invalid.|The requested Employee ID is contains Non-Nummeric characters.|
-|404|not_found_employee_id|ID not found.|The user enters a non existent Employee ID.|
+|404|not_found_employee_id|ID not found.|The requested Employee ID isn't existent.|
 
 ##### Sample Error Response
 
@@ -461,23 +444,6 @@
 ```json
 {
   "code": "invalid_employee_id",
-  "message": "Request Employee id is invalid."
-}
-```
-
-- When returning multiple errors at the same time
-
-```json
-{
-  "errors": [
-    {
-      "code": "invalid_employee_id",
-      "message": "Employee ID is invalid."
-    },
-    {
-      "code": "not_found_employee_id",
-      "message": "ID not found."
-    }
-  ]
+  "message": "Request Employee ID is invalid."
 }
 ```
