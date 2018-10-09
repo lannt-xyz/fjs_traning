@@ -253,7 +253,7 @@
 |○|first_name|bien|string|First name|
 |○|last_name|danghuu|string|Last name|
 |○|date_of_birth|1996-02-15|string|Employee's Birthdate|
-||salary|50000|number|Employee's salary|
+|○|salary|50000|number|Employee's salary|
 
 ### Response
 
