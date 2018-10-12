@@ -15,18 +15,17 @@ public class EmployeeService {
 	EmployeeRepository employeeRepository;
 
 	public List<EmployeeDto> getAll() {
-		return employeeRepository.selectAllEmployee().toDtoes();
+		return employeeRepository.selectAll().toDtoes();
 	}
-
+	
+	public List<EmployeeDto> getByName() {
+		return employeeRepository.selectAll()
+				.getByName();
+	}
+	
 	public List<EmployeeDto> getHighSalary() {
-		return employeeRepository.selectAllEmployee()
+		return employeeRepository.selectAll()
 				.getHighSalary()
-				.toDtoes();
-	}
-
-	public List<EmployeeDto> getLowSalary() {
-		return employeeRepository.selectAllEmployee()
-				.getLowSalary()
 				.toDtoes();
 	}
 }

@@ -13,26 +13,21 @@ import vn.fujinet.employee.application.service.EmployeeService;
 import vn.fujinet.employee.presentation.dto.EmployeeDto;
 
 @RestController
-@RequestMapping("/employeemanagerapi")
+@RequestMapping("/employees")
 public class EmployeeConrtroller {
 
 	@Autowired
 
 	private EmployeeService employeeService;
 
-	@RequestMapping(value = "/employees", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 
 	public ResponseEntity<List<EmployeeDto>> getAll() {
 		return new ResponseEntity<List<EmployeeDto>>(employeeService.getAll(), HttpStatus.OK);
 	}
-
-	@RequestMapping(value = "/highsalary", method = RequestMethod.GET)
-	public ResponseEntity<List<EmployeeDto>> getHighSalary() {
-		return new ResponseEntity<List<EmployeeDto>>(employeeService.getHighSalary(), HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/lowsalary", method = RequestMethod.GET)
-	public ResponseEntity<List<EmployeeDto>> getLowSalary() {
-		return new ResponseEntity<List<EmployeeDto>>(employeeService.getLowSalary(), HttpStatus.OK);
+	@RequestMapping(value = "/lastname", method = RequestMethod.GET)
+	
+	public ResponseEntity<List<EmployeeDto>> getByName() {
+		return new ResponseEntity<List<EmployeeDto>>(employeeService.getByName(), HttpStatus.OK);
 	}
 }

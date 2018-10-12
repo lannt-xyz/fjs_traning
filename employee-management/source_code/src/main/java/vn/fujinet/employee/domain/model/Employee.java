@@ -19,7 +19,7 @@ public class Employee {
 		return Employee.builder()
 				.firstName(employeeEntity.firstName)
 				.lastName(employeeEntity.lastName)
-				.dateOfBirth(employeeEntity.dayOfBirth)
+				.dateOfBirth(employeeEntity.dateOfBirth)
 				.salary(employeeEntity.salary)
 				.build();
 	}

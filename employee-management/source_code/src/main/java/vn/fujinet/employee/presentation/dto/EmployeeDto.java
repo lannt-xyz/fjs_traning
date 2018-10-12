@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class EmployeeDto {
-	//public Integer id;
+	public Integer id;
 	public String firstName;
 	public String lastName;
 	public String dateOfBirth;

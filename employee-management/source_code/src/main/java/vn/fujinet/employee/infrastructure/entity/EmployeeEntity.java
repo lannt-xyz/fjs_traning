@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class EmployeeEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	public int id;
 
@@ -23,7 +23,7 @@ public class EmployeeEntity {
 	public String lastName;
 
 	@Column(name = "dateofbirth")
-	public String dayOfBirth;
+	public String dateOfBirth;
 
 	@Column(name = "salary")
 	public double salary;

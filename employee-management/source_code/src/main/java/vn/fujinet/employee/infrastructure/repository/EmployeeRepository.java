@@ -6,7 +6,8 @@ import static java.util.stream.Collectors.toList;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import vn.fujinet.employee.domain.model.Employee;
@@ -17,12 +18,11 @@ import vn.fujinet.employee.infrastructure.entity.EmployeeEntity;
 public class EmployeeRepository {
 
 	@Autowired
-	private CrudRepository<EmployeeEntity, Integer> crudRepository;
+	private JpaRepository<EmployeeEntity, Integer> jpaRepository;
 
-	public EmployeeList selectAllEmployee() {
-		return StreamSupport.stream(crudRepository.findAll().spliterator(), false)
+	public EmployeeList selectAll() {
+		return StreamSupport.stream(jpaRepository.findAll().spliterator(), false)
 				.map(Employee::fromEntity)
 				.collect(collectingAndThen(toList(), EmployeeList::new));
-
 	}
 }
