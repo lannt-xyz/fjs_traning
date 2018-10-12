@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import vn.fujinet.employee.infrastructure.entity.EmployeeEntity;
 
-public interface EmployeeDao extends CrudRepository<EmployeeEntity, String>{
+public interface EmployeeDao extends CrudRepository<EmployeeEntity, Integer> {
 
 }
