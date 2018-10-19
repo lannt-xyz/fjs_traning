@@ -1,5 +1,7 @@
 package vn.fujinet.employee.presentation.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,10 +10,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class EmployeeDto {
-	//public Integer id;
+	public int id;
 	public String firstName;
 	public String lastName;
-	public String dateOfBirth;
+	public Date dateOfBirth;
 	public double salary;
-	
 }

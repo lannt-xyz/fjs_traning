@@ -1,6 +1,13 @@
 buildscript {
     repositories {
-        mavenCentral()
+    mavenCentral()
+    mavenLocal()
+    maven{url'http://repo.spring.io/snapshot'}
+    maven{url'http://repo.spring.io/milestone'}
+    maven{url'http://repo.spring.io/libs-release'}
+    maven{url'https://devel.honto.jp/artifactory/libs-release-local'}
+    maven{url'https://devel.honto.jp/artifactory/libs-snapshot-local'}
+    maven{url'http://repo1.maven.org/maven2/'}
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
@@ -19,6 +26,14 @@ bootJar {
 
 repositories {
     mavenCentral()
+    mavenLocal()
+    maven{url'http://repo.spring.io/snapshot'}
+    maven{url'http://repo.spring.io/milestone'}
+    maven{url'http://repo.spring.io/libs-release'}
+    maven{url'https://devel.honto.jp/artifactory/libs-release-local'}
+    maven{url'https://devel.honto.jp/artifactory/libs-snapshot-local'}
+    maven{url'http://repo1.maven.org/maven2/'}
+
 }
 
 sourceCompatibility = 1.8
@@ -27,12 +42,12 @@ targetCompatibility = 1.8
 dependencies {
 
  compile (
-		'org.springframework.boot:spring-boot-starter-data-jpa',
-		'org.springframework.boot:spring-boot-starter-web',
-		'mysql:mysql-connector-java',
-		'org.projectlombok:lombok:1.16.12'
-		)
- testCompile (
-		'org.springframework.boot:spring-boot-starter-test'
-	) 
+    'org.springframework.boot:spring-boot-starter-data-jpa',
+    'org.springframework.boot:spring-boot-starter',
+    'org.springframework.boot:spring-boot-starter-web',
+    'org.apache.tomcat:tomcat-jdbc',
+    'com.oracle:ojdbc7_g:12.1.0.2',
+    'org.projectlombok:lombok:1.16.12'
+    )
+ testCompile ('org.springframework.boot:spring-boot-starter-test')
 }
