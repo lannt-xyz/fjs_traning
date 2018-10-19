@@ -1,31 +1,34 @@
 package vn.fujinet.employee.infrastructure.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "employees")
 public class EmployeeEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	public int id;
+    @Id
+    @GeneratedValue()
+    @Column(name = "id")
+    public int id;
 
-	@Column(name = "firstname")
-	public String firstName;
+    @Column(name = "FIRST_NAME")
+    public String firstName;
 
-	@Column(name = "lastname")
-	public String lastName;
+    @Column(name = "LAST_NAME")
+    public String lastName;
 
-	@Column(name = "dateofbirth")
-	public String dateOfBirth;
+    @Column(name = "DATE_OF_BIRTH")
+    public Date dateOfBirth;
 
-	@Column(name = "salary")
-	public double salary;
-
+    @Column(name = "SALARY")
+    public double salary;
 }

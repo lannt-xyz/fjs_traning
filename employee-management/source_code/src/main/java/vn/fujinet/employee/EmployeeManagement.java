@@ -10,5 +10,4 @@ public class EmployeeManagement {
 		// TODO Auto-generated method stub
 		SpringApplication.run(EmployeeManagement.class, args);
 	}
-
 }
