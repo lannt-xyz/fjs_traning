@@ -12,31 +12,48 @@ public class EmployeeList {
 
     private List<Employee> employees;
 
-    //Define constructor
+    /**
+     * Define constructor
+     * @param employees
+     */
     public EmployeeList(List<Employee> employees) {
         this.employees = employees;
     }
-    //Return a list EmployeeDto
+
+    /**
+     * @return a list EmployeeDto
+     */
     public List<EmployeeDto> toDtoes() {
         return employees.stream()
                 .map(Employee::toDto)
                 .collect(Collectors.toList());
     }
-    //Return a list employees with salary was filtered between min and max
+
+    /**
+     * @return a list employees with salary was filtered between min and max
+     */
     public EmployeeList findBySalary() {
     	this.employees = employees.stream()
     			.filter(e -> e.getSalary() > min && e.getSalary() < max)
     			.collect(Collectors.toList());
     	return this;
     }
-    //Return a list employees which was filtered by firstName
+
+    /**
+     * @param firstName
+     * @return a list employees which was filtered by firstName
+     */
     public EmployeeList findByFirstName(String firstName) {
     	this.employees = (List<Employee>) employees.stream()
     			.filter(e -> e.getFirstName().equalsIgnoreCase(firstName))
     			.collect(Collectors.toList());
     	return this;
     }
-    //Return a list employees which was filtered by lastName
+
+    /**
+     * @param lastName
+     * @return a list employees which was filtered by lastName
+     */
     public EmployeeList findByLastName(String lastName) {
     	this.employees = (List<Employee>) employees.stream()
     			.filter(e -> e.getLastName().equalsIgnoreCase(lastName))

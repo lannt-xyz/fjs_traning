@@ -15,11 +15,15 @@ import vn.fujinet.employee.presentation.dto.EmployeeDto;
 public class Employee {
 	public int id;
 	public String firstName;
-	private String lastName;
-	private Date dateOfBirth;
-	private double salary;
+	public String lastName;
+	public Date dateOfBirth;
+	public double salary;
 
-	//Convert EmployeeEntity to Employee using Builder
+	/**
+	 * Convert EmployeeEntity to Employee using Builder/
+	 * @param employeeEntity
+	 * @return Employee convert from EmployeeEntity
+	 */
 	public static Employee fromEntity(EmployeeEntity employeeEntity) {
 		return Employee.builder()
 				.firstName(employeeEntity.firstName)
@@ -28,7 +32,11 @@ public class Employee {
 				.salary(employeeEntity.salary)
 				.build();
 	}
-	//Convert Employee to EmployeeDto using Builder
+
+	/**
+	 * Convert Employee to EmployeeDto using Builder
+	 * @return EmployeeDto convert from Employee
+	 */
 	public EmployeeDto toDto() {
 		return EmployeeDto.builder()
 				.firstName(this.firstName)
