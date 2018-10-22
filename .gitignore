@@ -18,6 +18,18 @@
 *.zip
 *.tar.gz
 *.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+/employee-management/source_code/.classpath
+/employee-management/source_code/.gradle/4.8.1/fileChanges/last-build.bin
+/employee-management/source_code/.gradle/4.8.1/fileHashes/fileHashes.bin
+/employee-management/source_code/.gradle/4.8.1/fileHashes/fileHashes.lock
+/employee-management/source_code/.gradle/4.8.1/taskHistory/taskHistory.bin
+/employee-management/source_code/.gradle/4.8.1/taskHistory/taskHistory.lock
+/employee-management/source_code/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/employee-management/source_code/.gradle/buildOutputCleanup/cache.properties
+/employee-management/source_code/.gradle/buildOutputCleanup/outputFiles.bin
+/employee-management/source_code/.gradle/vcsWorkingDirs/gc.properties
+/employee-management/source_code/.project
+/employee-management/source_code/.settings/org.eclipse.jdt.core.prefs
+/employee-management/source_code/.settings/org.springframework.ide.eclipse.prefs
+/employee-management/source_code/bin/main/application.properties
+/employee-management/source_code/bin/main/org/gradle/resource.xml
