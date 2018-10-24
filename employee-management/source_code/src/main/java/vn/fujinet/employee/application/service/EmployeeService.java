@@ -77,8 +77,10 @@ public class EmployeeService {
     	employeeRepository.update(employee, id);
     }
 
-    /*
+    /**
      * Add employee
+     * @param employee
+     * @param id must not be null
      */
     public void addEmployee(Employee employee, int id) {
     	employeeRepository.add(employee, id);

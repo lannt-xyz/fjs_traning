@@ -13,14 +13,15 @@ import vn.fujinet.employee.presentation.dto.EmployeeDto;
 @Builder
 @AllArgsConstructor
 public class Employee {
-	public int id;
-	public String firstName;
-	public String lastName;
-	public Date dateOfBirth;
-	public double salary;
+	private int id;
+	private String firstName;
+	private String lastName;
+	private Date dateOfBirth;
+	private double salary;
 
 	/**
-	 * Convert EmployeeEntity to Employee using Builder/
+	 * Convert EmployeeEntity to Employee using Builder.
+	 * 
 	 * @param employeeEntity
 	 * @return Employee convert from EmployeeEntity
 	 */
@@ -34,7 +35,8 @@ public class Employee {
 	}
 
 	/**
-	 * Convert Employee to EmployeeDto using Builder
+	 * Convert Employee to EmployeeDto using Builder.
+	 * 
 	 * @return EmployeeDto convert from Employee
 	 */
 	public EmployeeDto toDto() {

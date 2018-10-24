@@ -1,19 +1,22 @@
 package vn.fujinet.employee.domain.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.collectingAndThen;
 
 import vn.fujinet.employee.presentation.dto.EmployeeDto;
 
 public class EmployeeList {
 
-	int min = 1000;
-	int max = 50000;
+	private int min = 1000;
+	private int max = 50000;
 
     private List<Employee> employees;
 
     /**
-     * Define constructor
+     * Define constructor.
+     *
      * @param employees
      */
     public EmployeeList(List<Employee> employees) {
@@ -21,43 +24,51 @@ public class EmployeeList {
     }
 
     /**
+     * Return a list EmployeeDto converted from Employee.
+     *
      * @return a list EmployeeDto
      */
     public List<EmployeeDto> toDtoes() {
         return employees.stream()
                 .map(Employee::toDto)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     /**
-     * @return a list employees with salary was filtered between min and max
+     * Return a list employees with salary was filtered between min and max.
+     *
+     * @return a list employees
      */
     public EmployeeList findBySalary() {
-    	this.employees = employees.stream()
-    			.filter(e -> e.getSalary() > min && e.getSalary() < max)
-    			.collect(Collectors.toList());
-    	return this;
+    	return employees.stream()
+    			.filter(e -> beetween(e.getSalary()))
+    			.collect(collectingAndThen(toList(), EmployeeList::new));
     }
 
+    public boolean beetween(double Salary) {
+    	return Salary > min && Salary < max;
+    }
     /**
+     * Return a list employees which was filtered by firstName.
+     *
      * @param firstName
-     * @return a list employees which was filtered by firstName
+     * @return a list employees
      */
     public EmployeeList findByFirstName(String firstName) {
-    	this.employees = (List<Employee>) employees.stream()
+    	return employees.stream()
     			.filter(e -> e.getFirstName().equalsIgnoreCase(firstName))
-    			.collect(Collectors.toList());
-    	return this;
+    			.collect(collectingAndThen(toList(), EmployeeList::new));
     }
 
     /**
+     * Return a list employees which was filtered by lastName.
+     *
      * @param lastName
      * @return a list employees which was filtered by lastName
      */
     public EmployeeList findByLastName(String lastName) {
-    	this.employees = (List<Employee>) employees.stream()
+    	return employees.stream()
     			.filter(e -> e.getLastName().equalsIgnoreCase(lastName))
-    			.collect(Collectors.toList());
-    	return this;
+    			.collect(collectingAndThen(toList(), EmployeeList::new));
     }
 }

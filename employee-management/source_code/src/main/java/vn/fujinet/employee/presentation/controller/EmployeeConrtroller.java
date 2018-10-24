@@ -38,17 +38,17 @@ public class EmployeeConrtroller {
     }
 
     @RequestMapping(value = "/salary")
-	public ResponseEntity<List<EmployeeDto>> getBySalary() {
+	public ResponseEntity<List<EmployeeDto>> searchBySalary() {
 		return new ResponseEntity<List<EmployeeDto>>(employeeService.getBySalary(), HttpStatus.OK);
 	}
 
     @RequestMapping(params = {"firstname"})
-    public ResponseEntity<List<EmployeeDto>> getByFirstName(@RequestParam("firstname") String firstname) {
+    public ResponseEntity<List<EmployeeDto>> searchByFirstName(@RequestParam("firstname") String firstname) {
     	return new ResponseEntity<List<EmployeeDto>>(employeeService.getByFirstName(firstname), HttpStatus.OK);
     }
 
     @RequestMapping(params = {"lastname"})
-    public ResponseEntity<List<EmployeeDto>> getByLastName(@RequestParam("lastname") String lastname) {
+    public ResponseEntity<List<EmployeeDto>> searchByLastName(@RequestParam("lastname") String lastname) {
     	return new ResponseEntity<List<EmployeeDto>>(employeeService.getByLastName(lastname), HttpStatus.OK);
     }
 
