@@ -33,7 +33,6 @@ repositories {
     maven{url'https://devel.honto.jp/artifactory/libs-release-local'}
     maven{url'https://devel.honto.jp/artifactory/libs-snapshot-local'}
     maven{url'http://repo1.maven.org/maven2/'}
-
 }
 
 sourceCompatibility = 1.8

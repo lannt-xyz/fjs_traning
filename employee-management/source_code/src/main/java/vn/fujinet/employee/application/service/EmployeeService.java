@@ -16,32 +16,71 @@ public class EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
 
-    //Return a list all of Employees
+    /**
+     * Get all employees.
+     *
+     * @return a list all of Employees
+     */
     public List<EmployeeDto> getAll() {
         return employeeRepository.selectAll().toDtoes();
     }
-    //Return a employee by "id"
+
+    /**
+     * Get by id.
+     *
+     * @param id
+     * @return a employee by "id"
+     */
     public EmployeeEntity getById(int id) {
     	return employeeRepository.selectByID(id).orElseThrow(() -> new RuntimeException("ID Not Found"));
     }
-    //Return a list employees by Salary
+
+    /**
+     * Get by salary.
+     *
+     * @return a list employees by Salary
+     */
     public List<EmployeeDto> getBySalary() {
     	return employeeRepository.selectAll().findBySalary().toDtoes();
     }
-    //Return a list employees which was filtered by firstName
+
+    /**
+     * Get by first name.
+     *
+     * @param firstName
+     * @return a list employees which was filtered by firstName
+     */
     public List<EmployeeDto> getByFirstName(String firstName) {
     	return employeeRepository.selectAll().findByFirstName(firstName).toDtoes();
     }
-    //Return a list employees which was filtered by lastName
+
     public List<EmployeeDto> getByLastName(String lastName) {
     	return employeeRepository.selectAll().findByLastName(lastName).toDtoes();
     }
-    //Delete employee by "id"
+
+    /**
+     *  Delete employee by "id".
+     *
+     * @param id must not be {@literal null}
+     */
     public void deleteById(int id) {
     	employeeRepository.delete(id);
     }
-    //Update employee
+
+    /**
+     * Update employee.
+     *
+     * @param employee
+     * @param id must not be {@literal null}
+     */
     public void updateEmployee(Employee employee, int id) {
     	employeeRepository.update(employee, id);
+    }
+
+    /*
+     * Add employee
+     */
+    public void addEmployee(Employee employee, int id) {
+    	employeeRepository.add(employee, id);
     }
 }

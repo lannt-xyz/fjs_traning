@@ -20,17 +20,33 @@ public class EmployeeRepository {
     @Autowired
     private JpaRepository<EmployeeEntity, Integer> jpaRepository;
 
-    //Return list employees
+    /**
+     * Return a list all of employees.
+     *
+     * @return a list of employees
+     */
     public EmployeeList selectAll() {
         return StreamSupport.stream(jpaRepository.findAll().spliterator(), false)
                 .map(Employee::fromEntity)
                 .collect(collectingAndThen(toList(), EmployeeList::new));
     }
-    //Select employee by "id"
+
+    /**
+     * Select employee by "id".
+     *
+     * @param id must not be {@literal null}
+     * @return detail of employee
+     */
 	public Optional<EmployeeEntity> selectByID(int id) {
 		return jpaRepository.findById(Integer.valueOf(id));
 	}
-	//Delete employee by "id"
+
+	/**
+	 * Delete employee by "id".
+	 *
+	 * @param id must not be {@literal null}.
+	 * @throws RuntimeException if "id" not found.
+	 */
 	public void delete(int id) {
 		if(jpaRepository.existsById(id)) {
 			jpaRepository.deleteById(Integer.valueOf(id));
@@ -40,10 +56,17 @@ public class EmployeeRepository {
 			throw new RuntimeException("ID Not Found");
 		}
 	}
-	//Update employee
+
+	/**
+	 * Update employee.
+	 *
+	 * @param employee
+	 * @param id must not be {@literal null}.
+	 * @throws RuntimeException if "id" not found.
+	 */
 	public void update(Employee employee, int id) {
 		EmployeeEntity employeeEntity = jpaRepository.getOne(id);
-		if(jpaRepository.existsById(id)) {
+		if (jpaRepository.existsById(id)) {
 			employeeEntity.setFirstName(employee.getFirstName());
 			employeeEntity.setLastName(employee.getLastName());
 			employeeEntity.setDateOfBirth(employee.getDateOfBirth());
@@ -53,5 +76,8 @@ public class EmployeeRepository {
 		else {
 			throw new RuntimeException("ID Not Found");
 		}
+	}
+	public void add(Employee employee, int id) {
+		// TODO: xy li sau
 	}
 }
